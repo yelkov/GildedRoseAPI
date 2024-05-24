@@ -72,5 +72,9 @@ public class ServiceTest {
         Assertions.assertThat(sulfuras.getSellIn()).isEqualTo(0);
     }
 
+    @Test
+    public void test_inyeccion_servicio() {
+        Assertions.assertThat(service).isNotNull();
+    }
 
 }

@@ -27,4 +27,13 @@ public class ServiceTest {
         Assertions.assertThat(queso.sellIn).isEqualTo(0);
 
     }
+
+    @Test
+    public void test_mapping_agedBrie(){
+        AgedBrie queso = em.find(AgedBrie.class,2L);
+        Assertions.assertThat(queso).isNotNull();
+        Assertions.assertThat(queso.getName()).isEqualTo("Aged Brie");
+        Assertions.assertThat(queso.getQuality()).isEqualTo(2);
+        Assertions.assertThat(queso.getSellIn()).isEqualTo(0);
+    }
 }

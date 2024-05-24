@@ -1,7 +1,17 @@
 package edu.badpals.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="agedbrie")
 public class AgedBrie implements Updateable{
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name="item")
     private Item item;
+
+    public AgedBrie(){}
 
     public AgedBrie(String name, int sellIn, int quality){
         this.item = new Item( name, sellIn, quality);

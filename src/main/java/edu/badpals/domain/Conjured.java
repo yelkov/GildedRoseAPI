@@ -1,7 +1,16 @@
 package edu.badpals.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="conjured")
 public class Conjured implements Updateable {
+    @Id
+    @OneToOne
+    @JoinColumn(name="item")
     private Item item;
+
+    public Conjured(){}
 
     public Conjured(String name, int SellIn, int Quality){
         this.item = new Item(name, SellIn, Quality);

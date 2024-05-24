@@ -1,6 +1,7 @@
 package edu.badpals;
 
 import edu.badpals.domain.AgedBrie;
+import edu.badpals.domain.Conjured;
 import edu.badpals.domain.Item;
 import edu.badpals.domain.NormalItem;
 import io.quarkus.test.junit.QuarkusTest;
@@ -45,6 +46,15 @@ public class ServiceTest {
         Assertions.assertThat(elixir.getName()).isEqualTo("Elixir of the Mongoose");
         Assertions.assertThat(elixir.getQuality()).isEqualTo(5);
         Assertions.assertThat(elixir.getSellIn()).isEqualTo(7);
+    }
+
+    @Test
+    public void test_mapping_conjured(){
+        Conjured conjured = em.find(Conjured.class,9L);
+        Assertions.assertThat(conjured).isNotNull();
+        Assertions.assertThat(conjured.getName()).isEqualTo("Conjured Mana Cake");
+        Assertions.assertThat(conjured.getQuality()).isEqualTo(3);
+        Assertions.assertThat(conjured.getSellIn()).isEqualTo(6);
     }
 
 

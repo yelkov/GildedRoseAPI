@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class AgedBrie implements Updateable{
 
     @Id
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="item")
     private Item item;
 

@@ -2,6 +2,7 @@ package edu.badpals;
 
 import edu.badpals.domain.AgedBrie;
 import edu.badpals.domain.Item;
+import edu.badpals.domain.NormalItem;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -20,7 +21,7 @@ public class ServiceTest {
 
     @Test
     public void test_mapping_item(){
-        Item queso = em.find(Item.class,2);
+        Item queso = em.find(Item.class,2L);
         Assertions.assertThat(queso).isNotNull();
         Assertions.assertThat(queso.name).isEqualTo("Aged Brie");
         Assertions.assertThat(queso.quality).isEqualTo(2);
@@ -36,4 +37,15 @@ public class ServiceTest {
         Assertions.assertThat(queso.getQuality()).isEqualTo(2);
         Assertions.assertThat(queso.getSellIn()).isEqualTo(0);
     }
+
+    /*@Test
+    public void test_mapping_normalItem(){
+        NormalItem elixir = em.find(NormalItem.class,3L);
+        Assertions.assertThat(elixir).isNotNull();
+        Assertions.assertThat(elixir.getName()).isEqualTo("Elixir of the Mongoose");
+        Assertions.assertThat(elixir.getQuality()).isEqualTo(5);
+        Assertions.assertThat(elixir.getSellIn()).isEqualTo(7);
+    }*/
+
+
 }

@@ -1,7 +1,16 @@
 package edu.badpals.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="sulfuras")
 public class Sulfuras implements Updateable{
+    @Id
+    @OneToOne
+    @JoinColumn(name="item")
     private Item item;
+
+    public Sulfuras(){}
 
     public Sulfuras(String name, int SellIn){
         this.item = new Item(name, SellIn, 80);

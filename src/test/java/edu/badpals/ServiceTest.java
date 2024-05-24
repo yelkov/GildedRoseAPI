@@ -63,5 +63,14 @@ public class ServiceTest {
         Assertions.assertThat(backstage.getSellIn()).isEqualTo(10);
     }
 
+    @Test
+    public void test_mapping_sulfuras(){
+        Sulfuras sulfuras = em.find(Sulfuras.class,4L);
+        Assertions.assertThat(sulfuras).isNotNull();
+        Assertions.assertThat(sulfuras.getName()).isEqualTo("Sulfuras, Hand of Ragnaros");
+        Assertions.assertThat(sulfuras.getQuality()).isEqualTo(80);
+        Assertions.assertThat(sulfuras.getSellIn()).isEqualTo(0);
+    }
+
 
 }

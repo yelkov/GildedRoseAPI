@@ -185,4 +185,21 @@ public class ServiceTest {
         List<Item> items = servicio.cargaAllItems();
         Assertions.assertThat(items.size()).isEqualTo(9);
     }
+    @Test
+    public void testUpdateables() {
+
+        List<Updateable> updateables = servicio.cargarAllUpdateables();
+
+        Assertions.assertThat(updateables).allSatisfy(updateable -> Assertions.assertThat(updateable).isInstanceOf(Updateable.class));
+    }
+
+    /*@Test
+    public void test_update_database(){
+        List<Item> items = servicio.cargaAllItems();
+        int quality0 = items.get(0).quality;
+        int quality1 = items.get(1).quality;
+        servicio.updateDatabase();
+        Assertions.assertThat(quality0 - 1).isEqualTo(items.get(0).quality);
+        Assertions.assertThat(quality1 + 2).isEqualTo(items.get(1).quality);
+    }*/
 }

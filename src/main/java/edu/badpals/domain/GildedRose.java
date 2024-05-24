@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-class GildedRose {
+public class GildedRose {
     List<Updateable> items = new ArrayList<>();
 
     private List<Updateable> getItems() {

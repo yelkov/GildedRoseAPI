@@ -6,6 +6,7 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,4 +79,20 @@ public class ServiceGildedRose {
     public List<Sulfuras> cargaAllSulfuras(){
         return sulfurasRepository.listAll();
     }
+
+    public List<Updateable> cargarAllUpdateables(){
+        List<Updateable> updateables = new ArrayList<>();
+        updateables.addAll(cargaAllNormalItems());
+        updateables.addAll(cargaAllAgedBrie());
+        updateables.addAll(cargaAllBackstagePass());
+        updateables.addAll(cargaAllSulfuras());
+        updateables.addAll(cargaAllConjured());
+        return updateables;
+    }
+
+    /*public void updateDatabase() {
+        GildedRose gildedRose = new GildedRose();
+        List<Item> items = cargaAllItems();
+
+    }*/
 }

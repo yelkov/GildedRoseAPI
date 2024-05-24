@@ -1,7 +1,16 @@
 package edu.badpals.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="normalitems")
 public class NormalItem implements Updateable{
+    @Id
+    @OneToOne
+    @JoinColumn(name="item")
     private Item item;
+
+    public NormalItem(){}
 
     public NormalItem(String name, int SellIn, int Quality){
         this.item = new Item(name, SellIn, Quality);

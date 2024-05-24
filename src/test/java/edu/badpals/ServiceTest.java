@@ -38,14 +38,14 @@ public class ServiceTest {
         Assertions.assertThat(queso.getSellIn()).isEqualTo(0);
     }
 
-    /*@Test
+    @Test
     public void test_mapping_normalItem(){
         NormalItem elixir = em.find(NormalItem.class,3L);
         Assertions.assertThat(elixir).isNotNull();
         Assertions.assertThat(elixir.getName()).isEqualTo("Elixir of the Mongoose");
         Assertions.assertThat(elixir.getQuality()).isEqualTo(5);
         Assertions.assertThat(elixir.getSellIn()).isEqualTo(7);
-    }*/
+    }
 
 
 }

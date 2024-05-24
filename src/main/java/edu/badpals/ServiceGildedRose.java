@@ -1,5 +1,6 @@
 package edu.badpals;
 
+import edu.badpals.domain.AgedBrie;
 import edu.badpals.domain.BackstagePass;
 import edu.badpals.domain.NormalItem;
 import edu.badpals.domain.Sulfuras;
@@ -30,5 +31,12 @@ public class ServiceGildedRose {
         return normalItem.isPresent()?
                 normalItem.get():
                 new NormalItem();
+    }
+
+    public AgedBrie cargaAgedBrie(long id) {
+        Optional<AgedBrie> agedBrie = agedBrieRepository.findByIdOptional(id);
+        return agedBrie.isPresent()?
+                agedBrie.get():
+                new AgedBrie();
     }
 }

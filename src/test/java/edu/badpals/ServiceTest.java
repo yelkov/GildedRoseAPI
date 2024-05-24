@@ -97,4 +97,24 @@ public class ServiceTest {
         Assertions.assertThat(otro.getQuality()).isZero();
     }
 
+    @Test
+    public void test_carga_agedBrie() {
+        Assertions.assertThat(servicio).isNotNull();
+        AgedBrie queso = servicio.cargaAgedBrie(2L);
+        Assertions.assertThat(queso).isNotNull();
+        Assertions.assertThat(queso.getName()).isEqualTo("Aged Brie");
+        Assertions.assertThat(queso.getSellIn()).isEqualTo(0);
+        Assertions.assertThat(queso.getQuality()).isEqualTo(2);
+    }
+
+    @Test
+    public void test_carga_agedBrie_no_existe() {
+        Assertions.assertThat(servicio).isNotNull();
+        AgedBrie otro = servicio.cargaAgedBrie(25L);
+        Assertions.assertThat(otro).isNotNull();
+        Assertions.assertThat(otro.getName()).isEmpty();
+        Assertions.assertThat(otro.getSellIn()).isZero();
+        Assertions.assertThat(otro.getQuality()).isZero();
+    }
+
 }

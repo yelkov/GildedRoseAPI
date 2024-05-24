@@ -5,7 +5,6 @@ import edu.badpals.repository.*;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import org.jboss.resteasy.annotations.LinkHeaderParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,12 +24,15 @@ public class ServiceGildedRose {
     @Inject
     ConjuredRepository conjuredRepository;
 
-    public <T> T cargarItem(PanacheRepository<T> repository, Long id, T itemType){
+    private <T> T cargarItem(PanacheRepository<T> repository, Long id, T itemType){
         Optional<T> item = repository.findByIdOptional(id);
         return item.isPresent()?
                 item.get():
                 itemType;
 
+    }
+    public Item cargarItem(Long id){
+        return cargarItem(itemRepository, id, new Item());
     }
 
     public NormalItem cargaNormalItem(long id) {
@@ -55,5 +57,25 @@ public class ServiceGildedRose {
 
     public List<Item> cargaAllItems() {
         return itemRepository.listAll();
+    }
+
+    public List<NormalItem> cargaAllNormalItems(){
+        return normalItemRepository.listAll();
+    }
+
+    public List<AgedBrie> cargaAllAgedBrie(){
+        return agedBrieRepository.listAll();
+    }
+
+    public List<BackstagePass> cargaAllBackstagePass(){
+        return backstagepassRepository.listAll();
+    }
+
+    public List<Conjured> cargaAllConjured(){
+        return conjuredRepository.listAll();
+    }
+
+    public List<Sulfuras> cargaAllSulfuras(){
+        return sulfurasRepository.listAll();
     }
 }

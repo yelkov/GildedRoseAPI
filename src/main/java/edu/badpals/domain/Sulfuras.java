@@ -10,7 +10,9 @@ public class Sulfuras implements Updateable{
     @JoinColumn(name="item")
     private Item item;
 
-    public Sulfuras(){}
+    public Sulfuras(){
+        this.item = new Item();
+    }
 
     public Sulfuras(String name, int SellIn){
         this.item = new Item(name, SellIn, 80);

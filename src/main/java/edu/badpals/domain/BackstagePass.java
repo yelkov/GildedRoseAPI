@@ -10,7 +10,9 @@ public class BackstagePass implements Updateable{
     @JoinColumn(name="item")
     private Item item;
 
-    public BackstagePass(){}
+    public BackstagePass(){
+        this.item = new Item();
+    }
 
     public BackstagePass(String name, int sellIn, int quality){
         this.item = new Item(name,sellIn,quality);

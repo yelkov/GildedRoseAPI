@@ -10,7 +10,9 @@ public class Conjured implements Updateable {
     @JoinColumn(name="item")
     private Item item;
 
-    public Conjured(){}
+    public Conjured(){
+        this.item = new Item();
+    }
 
     public Conjured(String name, int SellIn, int Quality){
         this.item = new Item(name, SellIn, Quality);

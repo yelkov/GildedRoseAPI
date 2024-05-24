@@ -12,13 +12,13 @@ public class Item {
     public Long id;
 
     @Column(name="name_item")
-    public String name;
+    public String name = "";
 
     @Column(name="sellin")
-    public int sellIn;
+    public int sellIn = 0;
 
     @Column(name="quality")
-    public int quality;
+    public int quality = 0;
 
     public Item(){}
 

@@ -11,7 +11,9 @@ public class AgedBrie implements Updateable{
     @JoinColumn(name="item")
     private Item item;
 
-    public AgedBrie(){}
+    public AgedBrie(){
+        this.item = new Item();
+    }
 
     public AgedBrie(String name, int sellIn, int quality){
         this.item = new Item( name, sellIn, quality);

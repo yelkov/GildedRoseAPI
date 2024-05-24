@@ -10,7 +10,9 @@ public class NormalItem implements Updateable{
     @JoinColumn(name="item")
     private Item item;
 
-    public NormalItem(){}
+    public NormalItem(){
+        this.item = new Item();
+    }
 
     public NormalItem(String name, int SellIn, int Quality){
         this.item = new Item(name, SellIn, Quality);

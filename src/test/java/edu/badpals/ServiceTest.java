@@ -117,4 +117,24 @@ public class ServiceTest {
         Assertions.assertThat(otro.getQuality()).isZero();
     }
 
+    @Test
+    public void test_carga_conjured() {
+        Assertions.assertThat(servicio).isNotNull();
+        Conjured conjured = servicio.cargaConjured(9L);
+        Assertions.assertThat(conjured).isNotNull();
+        Assertions.assertThat(conjured.getName()).isEqualTo("Conjured Mana Cake");
+        Assertions.assertThat(conjured.getSellIn()).isEqualTo(6);
+        Assertions.assertThat(conjured.getQuality()).isEqualTo(3);
+    }
+
+    @Test
+    public void test_carga_conjured_no_existe() {
+        Assertions.assertThat(servicio).isNotNull();
+        Conjured conjured = servicio.cargaConjured(35L);
+        Assertions.assertThat(conjured).isNotNull();
+        Assertions.assertThat(conjured.getName()).isEmpty();
+        Assertions.assertThat(conjured.getSellIn()).isZero();
+        Assertions.assertThat(conjured.getQuality()).isZero();
+    }
+
 }

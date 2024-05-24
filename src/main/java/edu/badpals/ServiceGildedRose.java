@@ -1,9 +1,6 @@
 package edu.badpals;
 
-import edu.badpals.domain.AgedBrie;
-import edu.badpals.domain.BackstagePass;
-import edu.badpals.domain.NormalItem;
-import edu.badpals.domain.Sulfuras;
+import edu.badpals.domain.*;
 import edu.badpals.repository.*;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -41,5 +38,9 @@ public class ServiceGildedRose {
 
     public AgedBrie cargaAgedBrie(long id) {
         return cargarItem(agedBrieRepository, id, new AgedBrie());
+    }
+
+    public Conjured cargaConjured(long id) {
+        return cargarItem(conjuredRepository, id, new Conjured());
     }
 }

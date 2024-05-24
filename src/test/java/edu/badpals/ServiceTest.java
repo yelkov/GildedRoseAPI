@@ -15,7 +15,7 @@ public class ServiceTest {
     EntityManager em;
 
     @Inject
-    ServiceGildedRose service;
+    ServiceGildedRose servicio;
 
     @Test
     public void test_mapping_item(){
@@ -74,7 +74,17 @@ public class ServiceTest {
 
     @Test
     public void test_inyeccion_servicio() {
-        Assertions.assertThat(service).isNotNull();
+        Assertions.assertThat(servicio).isNotNull();
+    }
+
+    @Test
+    public void test_carga_item() {
+        Assertions.assertThat(servicio).isNotNull();
+        NormalItem elixir = servicio.cargaNormalItem(3L);
+        Assertions.assertThat(elixir).isNotNull();
+        Assertions.assertThat(elixir.getName()).isEqualTo("Elixir of the Mongoose");
+        Assertions.assertThat(elixir.getSellIn()).isEqualTo(7);
+        Assertions.assertThat(elixir.getQuality()).isEqualTo(5);
     }
 
 }

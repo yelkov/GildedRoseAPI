@@ -6,7 +6,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("/")
-public class OllivandersResource {
+public class ResourceGildedRose {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)

@@ -1,11 +1,26 @@
 package edu.badpals.domain;
-public class Item {
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="items")
+public class Item {
+    @Id
+    public Long id;
+
+    @Column(name="name_item")
     public String name;
 
+    @Column(name="sellin")
     public int sellIn;
 
+    @Column(name="quality")
     public int quality;
+
+    public Item(){}
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;

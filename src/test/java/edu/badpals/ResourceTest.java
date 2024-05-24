@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
@@ -33,6 +34,29 @@ class ResourceTest {
                 .then()
                 .statusCode(200)
                 .body(is("¡Bienvenido a nuestra tienda!"));
+    }
+
+    @Test
+    public void test_get_Item() {
+
+        given()
+                .pathParam("id", 1L)
+                .when()
+                .get("/item/{id}")
+                .then()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("id", equalTo(1),
+                        "name", equalTo("+5 Dexterity Vest"),
+                        "sellIn",equalTo(20),
+                        "quality",equalTo(10));
+
+        given()
+                .pathParam("id", 30L)
+                .when()
+                .get("/item/{id}")
+                .then()
+                .statusCode(404);
     }
 
 

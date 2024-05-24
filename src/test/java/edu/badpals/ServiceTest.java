@@ -156,4 +156,24 @@ public class ServiceTest {
         Assertions.assertThat(pass.getSellIn()).isZero();
         Assertions.assertThat(pass.getQuality()).isZero();
     }
+
+    @Test
+    public void test_carga_sulfuras() {
+        Assertions.assertThat(servicio).isNotNull();
+        Sulfuras sulfuras = servicio.cargaSulfuras(5L);
+        Assertions.assertThat(sulfuras).isNotNull();
+        Assertions.assertThat(sulfuras.getName()).isEqualTo("Sulfuras, Hand of Ragnaros");
+        Assertions.assertThat(sulfuras.getSellIn()).isEqualTo(-1);
+        Assertions.assertThat(sulfuras.getQuality()).isEqualTo(80);
+    }
+
+    @Test
+    public void test_carga_sulfuras_no_existe() {
+        Assertions.assertThat(servicio).isNotNull();
+        Sulfuras sulfuras = servicio.cargaSulfuras(30L);
+        Assertions.assertThat(sulfuras).isNotNull();
+        Assertions.assertThat(sulfuras.getName()).isEmpty();
+        Assertions.assertThat(sulfuras.getSellIn()).isZero();
+        Assertions.assertThat(sulfuras.getQuality()).isZero();
+    }
 }

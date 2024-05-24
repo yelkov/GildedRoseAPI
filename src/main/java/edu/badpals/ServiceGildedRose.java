@@ -47,4 +47,8 @@ public class ServiceGildedRose {
     public BackstagePass cargaBackstagePass(long id) {
         return cargarItem(backstagepassRepository, id, new BackstagePass());
     }
+
+    public Sulfuras cargaSulfuras(long id) {
+        return cargarItem(sulfurasRepository, id, new Sulfuras());
+    }
 }

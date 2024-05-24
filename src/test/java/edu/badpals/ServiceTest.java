@@ -1,9 +1,6 @@
 package edu.badpals;
 
-import edu.badpals.domain.AgedBrie;
-import edu.badpals.domain.Conjured;
-import edu.badpals.domain.Item;
-import edu.badpals.domain.NormalItem;
+import edu.badpals.domain.*;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -55,6 +52,15 @@ public class ServiceTest {
         Assertions.assertThat(conjured.getName()).isEqualTo("Conjured Mana Cake");
         Assertions.assertThat(conjured.getQuality()).isEqualTo(3);
         Assertions.assertThat(conjured.getSellIn()).isEqualTo(6);
+    }
+
+    @Test
+    public void test_mapping_backstagepass(){
+        BackstagePass backstage = em.find(BackstagePass.class,7L);
+        Assertions.assertThat(backstage).isNotNull();
+        Assertions.assertThat(backstage.getName()).isEqualTo("Backstage passes to a TAFKAL80ETC concert");
+        Assertions.assertThat(backstage.getQuality()).isEqualTo(49);
+        Assertions.assertThat(backstage.getSellIn()).isEqualTo(10);
     }
 
 

@@ -1,7 +1,16 @@
 package edu.badpals.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="backstagepass")
 public class BackstagePass implements Updateable{
+    @Id
+    @OneToOne
+    @JoinColumn(name="item")
     private Item item;
+
+    public BackstagePass(){}
 
     public BackstagePass(String name, int sellIn, int quality){
         this.item = new Item(name,sellIn,quality);

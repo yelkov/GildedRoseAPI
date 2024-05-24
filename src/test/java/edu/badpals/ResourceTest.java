@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
@@ -57,6 +57,20 @@ class ResourceTest {
                 .get("/item/{id}")
                 .then()
                 .statusCode(404);
+    }
+    @Test
+    public void test_get_all_items() {
+        given()
+                .when()
+                .get("/items")
+                .then()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("$.size()", greaterThan(0))
+                .body("id[0]", notNullValue())
+                .body("name[0]", notNullValue())
+                .body("sellIn[0]", notNullValue())
+                .body("quality[0]", notNullValue());
     }
 
 

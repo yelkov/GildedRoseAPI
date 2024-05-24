@@ -9,6 +9,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.util.List;
+
 @Path("/")
 public class ResourceGildedRose {
 
@@ -30,6 +32,15 @@ public class ResourceGildedRose {
         return item.name.isEmpty()?
                 Response.status(Response.Status.NOT_FOUND).build():
                 Response.status(Response.Status.OK).entity(item).build();
+    }
+    @GET
+    @Path("items")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllItems(){
+        List<Item> items = service.cargaAllItems();
+        return items.isEmpty()?
+                Response.status(Response.Status.NOT_FOUND).build():
+                Response.status(Response.Status.OK).entity(items).build();
     }
 
 }

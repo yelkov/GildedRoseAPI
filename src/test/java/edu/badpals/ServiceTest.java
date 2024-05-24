@@ -78,13 +78,23 @@ public class ServiceTest {
     }
 
     @Test
-    public void test_carga_item() {
+    public void test_carga_normalItem() {
         Assertions.assertThat(servicio).isNotNull();
         NormalItem elixir = servicio.cargaNormalItem(3L);
         Assertions.assertThat(elixir).isNotNull();
         Assertions.assertThat(elixir.getName()).isEqualTo("Elixir of the Mongoose");
         Assertions.assertThat(elixir.getSellIn()).isEqualTo(7);
         Assertions.assertThat(elixir.getQuality()).isEqualTo(5);
+    }
+
+    @Test
+    public void test_carga_item_no_existe() {
+        Assertions.assertThat(servicio).isNotNull();
+        NormalItem otro = servicio.cargaNormalItem(25L);
+        Assertions.assertThat(otro).isNotNull();
+        Assertions.assertThat(otro.getName()).isEmpty();
+        Assertions.assertThat(otro.getSellIn()).isZero();
+        Assertions.assertThat(otro.getQuality()).isZero();
     }
 
 }

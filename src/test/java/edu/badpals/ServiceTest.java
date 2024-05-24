@@ -137,4 +137,23 @@ public class ServiceTest {
         Assertions.assertThat(conjured.getQuality()).isZero();
     }
 
+    @Test
+    public void test_carga_backstage() {
+        Assertions.assertThat(servicio).isNotNull();
+        BackstagePass pass = servicio.cargaBackstagePass(6L);
+        Assertions.assertThat(pass).isNotNull();
+        Assertions.assertThat(pass.getName()).isEqualTo("Backstage passes to a TAFKAL80ETC concert");
+        Assertions.assertThat(pass.getSellIn()).isEqualTo(15);
+        Assertions.assertThat(pass.getQuality()).isEqualTo(20);
+    }
+
+    @Test
+    public void test_carga_pass_no_existe() {
+        Assertions.assertThat(servicio).isNotNull();
+        BackstagePass pass = servicio.cargaBackstagePass(25L);
+        Assertions.assertThat(pass).isNotNull();
+        Assertions.assertThat(pass.getName()).isEmpty();
+        Assertions.assertThat(pass.getSellIn()).isZero();
+        Assertions.assertThat(pass.getQuality()).isZero();
+    }
 }

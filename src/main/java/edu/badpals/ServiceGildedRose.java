@@ -43,4 +43,8 @@ public class ServiceGildedRose {
     public Conjured cargaConjured(long id) {
         return cargarItem(conjuredRepository, id, new Conjured());
     }
+
+    public BackstagePass cargaBackstagePass(long id) {
+        return cargarItem(backstagepassRepository, id, new BackstagePass());
+    }
 }

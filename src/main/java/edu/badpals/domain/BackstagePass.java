@@ -27,6 +27,11 @@ public class BackstagePass implements Updateable{
     }
 
     @Override
+    public Item getItem() {
+        return this.item;
+    }
+
+    @Override
     public int getSellIn() {
         return this.item.sellIn;
     }

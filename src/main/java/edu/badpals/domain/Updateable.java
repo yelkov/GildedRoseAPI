@@ -1,6 +1,7 @@
 package edu.badpals.domain;
 
 public interface Updateable {
+    public Item getItem();
     public int getSellIn();
     public void setSellIn(int newSellIn);
     public void setQuality(int newQuality);

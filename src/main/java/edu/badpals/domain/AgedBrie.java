@@ -29,6 +29,11 @@ public class AgedBrie implements Updateable{
     }
 
     @Override
+    public Item getItem() {
+        return this.item;
+    }
+
+    @Override
     public int getSellIn() {
         return item.sellIn;
     }

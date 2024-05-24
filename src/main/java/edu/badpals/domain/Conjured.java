@@ -22,6 +22,11 @@ public class Conjured implements Updateable {
         return this.item.name;
     }
 
+    @Override
+    public Item getItem() {
+        return this.item;
+    }
+
     public int getSellIn(){
         return this.item.sellIn;
     }

@@ -5,6 +5,7 @@ import edu.badpals.repository.*;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class ServiceGildedRose {
     SulfurasRepository sulfurasRepository;
     @Inject
     ConjuredRepository conjuredRepository;
+    @Inject
+    GildedRose shop;
 
     private <T> T cargarItem(PanacheRepository<T> repository, Long id, T itemType){
         Optional<T> item = repository.findByIdOptional(id);
@@ -90,9 +93,12 @@ public class ServiceGildedRose {
         return updateables;
     }
 
-    /*public void updateDatabase() {
-        GildedRose gildedRose = new GildedRose();
-        List<Item> items = cargaAllItems();
-
-    }*/
+    @Transactional
+    public void updateDatabase() {
+        List<Updateable> updateablesList = cargarAllUpdateables();
+        for (Updateable item : updateablesList){
+            shop.addItem(item);
+        }
+        shop.updateItems();
+    }
 }

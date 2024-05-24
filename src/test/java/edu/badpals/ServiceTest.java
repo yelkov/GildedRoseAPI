@@ -1,12 +1,17 @@
 package edu.badpals;
 
 import edu.badpals.domain.*;
+import edu.badpals.repository.ItemRepository;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.assertj.core.api.Assertions;
+
 
 import java.util.List;
 
@@ -18,6 +23,8 @@ public class ServiceTest {
 
     @Inject
     ServiceGildedRose servicio;
+    @Inject
+    ItemRepository itemRepository;
 
     @Test
     public void test_mapping_item(){
@@ -193,7 +200,8 @@ public class ServiceTest {
         Assertions.assertThat(updateables).allSatisfy(updateable -> Assertions.assertThat(updateable).isInstanceOf(Updateable.class));
     }
 
-    /*@Test
+    @Test
+    @TestTransaction
     public void test_update_database(){
         List<Item> items = servicio.cargaAllItems();
         int quality0 = items.get(0).quality;
@@ -201,5 +209,5 @@ public class ServiceTest {
         servicio.updateDatabase();
         Assertions.assertThat(quality0 - 1).isEqualTo(items.get(0).quality);
         Assertions.assertThat(quality1 + 2).isEqualTo(items.get(1).quality);
-    }*/
+    }
 }

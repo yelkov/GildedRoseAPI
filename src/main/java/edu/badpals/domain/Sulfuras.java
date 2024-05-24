@@ -55,4 +55,9 @@ public class Sulfuras implements Updateable{
     public String toString() {
         return this.item.toString();
     }
+
+    @Override
+    public Item getItem(){
+        return this.item;
+    }
 }

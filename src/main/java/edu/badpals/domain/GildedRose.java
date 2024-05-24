@@ -1,10 +1,20 @@
 package edu.badpals.domain;
 
+import edu.badpals.repository.ItemRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
 public class GildedRose {
+
+    @Inject
+    ItemRepository itemRepository;
+
     List<Updateable> items = new ArrayList<>();
 
     private List<Updateable> getItems() {
@@ -26,9 +36,11 @@ public class GildedRose {
         return getItems().get(position);
     }
 
+    @Transactional
     public void updateItems(){
-        for (Updateable item : getItems()){
-            item.updateItem();
+        for (Updateable updateable : getItems()){
+            updateable.updateItem();
+            itemRepository.persist(updateable.getItem());
         }
     }
 

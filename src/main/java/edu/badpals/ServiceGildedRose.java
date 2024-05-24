@@ -7,6 +7,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.jboss.resteasy.annotations.LinkHeaderParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
@@ -50,5 +51,9 @@ public class ServiceGildedRose {
 
     public Sulfuras cargaSulfuras(long id) {
         return cargarItem(sulfurasRepository, id, new Sulfuras());
+    }
+
+    public List<Item> cargaAllItems() {
+        return itemRepository.listAll();
     }
 }

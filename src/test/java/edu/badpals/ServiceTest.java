@@ -8,6 +8,8 @@ import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.Test;
 import org.assertj.core.api.Assertions;
 
+import java.util.List;
+
 @QuarkusTest
 public class ServiceTest {
 
@@ -175,5 +177,12 @@ public class ServiceTest {
         Assertions.assertThat(sulfuras.getName()).isEmpty();
         Assertions.assertThat(sulfuras.getSellIn()).isZero();
         Assertions.assertThat(sulfuras.getQuality()).isZero();
+    }
+
+    @Test
+    public void test_carga_allItems(){
+        Assertions.assertThat(servicio).isNotNull();
+        List<Item> items = servicio.cargaAllItems();
+        Assertions.assertThat(items.size()).isEqualTo(9);
     }
 }

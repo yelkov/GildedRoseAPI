@@ -2,10 +2,9 @@ package edu.badpals;
 
 import edu.badpals.domain.Item;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -16,6 +15,8 @@ public class ResourceGildedRose {
 
     @Inject
     ServiceGildedRose service;
+    @Inject
+    EntityManager em;
 
     @GET
     @Path("bienvenida")
@@ -43,4 +44,14 @@ public class ResourceGildedRose {
                 Response.status(Response.Status.OK).entity(items).build();
     }
 
+    @PUT
+    @Path("updateItems")
+    @Transactional
+    @Produces(MediaType.APPLICATION_JSON)
+    //curl -X PUT "http://localhost:8080/updateItems" -v
+    public Response updateItems(){
+        service.updateDatabase();
+        System.out.println("¡Todos los items se han actualizado con éxito!");
+        return Response.status(Response.Status.OK).build();
+    }
 }

@@ -40,7 +40,7 @@ public class GildedRose {
     public void updateItems(){
         for (Updateable updateable : getItems()){
             updateable.updateItem();
-            itemRepository.persist(updateable.getItem());
+            itemRepository.persistAndFlush(updateable.getItem());
         }
     }
 

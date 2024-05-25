@@ -1,6 +1,6 @@
 package edu.badpals;
 
-import edu.badpals.domain.Item;
+import edu.badpals.domain.*;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -54,4 +54,53 @@ public class ResourceGildedRose {
         System.out.println("¡Todos los items se han actualizado con éxito!");
         return Response.status(Response.Status.OK).build();
     }
+
+    @GET
+    @Path("agedBrie/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllAgedBrie(){
+        List<AgedBrie> agedBries = service.cargaAllAgedBrie();
+        return agedBries.isEmpty()?
+                Response.status(Response.Status.NOT_FOUND).build():
+                Response.status(Response.Status.OK).entity(agedBries).build();
+    }
+
+    @GET
+    @Path("normalItem/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllNormalItem(){
+        List<NormalItem> normalItems = service.cargaAllNormalItems();
+        return normalItems.isEmpty()?
+                Response.status(Response.Status.NOT_FOUND).build():
+                Response.status(Response.Status.OK).entity(normalItems).build();
+    }
+    @GET
+    @Path("backstagePass/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllbackstagePass(){
+        List<BackstagePass> backstagePasses = service.cargaAllBackstagePass();
+        return backstagePasses.isEmpty()?
+                Response.status(Response.Status.NOT_FOUND).build():
+                Response.status(Response.Status.OK).entity(backstagePasses).build();
+    }
+    @GET
+    @Path("conjured/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllConjured(){
+        List<Conjured> conjured = service.cargaAllConjured();
+        return conjured.isEmpty()?
+                Response.status(Response.Status.NOT_FOUND).build():
+                Response.status(Response.Status.OK).entity(conjured).build();
+    }
+    @GET
+    @Path("sulfuras/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllSulfuras(){
+        List<Sulfuras> sulfuras = service.cargaAllSulfuras();
+        return sulfuras.isEmpty()?
+                Response.status(Response.Status.NOT_FOUND).build():
+                Response.status(Response.Status.OK).entity(sulfuras).build();
+    }
+
+
 }

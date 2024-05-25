@@ -96,8 +96,10 @@ public class ServiceGildedRose {
     @Transactional
     public void updateDatabase() {
         List<Updateable> updateablesList = cargarAllUpdateables();
-        for (Updateable item : updateablesList){
-            shop.addItem(item);
+        if(shop.isEmpty()) {
+            for (Updateable item : updateablesList) {
+                shop.addItem(item);
+            }
         }
         shop.updateItems();
     }

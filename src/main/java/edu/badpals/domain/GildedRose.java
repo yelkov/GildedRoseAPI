@@ -3,6 +3,7 @@ package edu.badpals.domain;
 import edu.badpals.repository.ItemRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.Optional;
 public class GildedRose {
 
     @Inject
-    ItemRepository itemRepository;
+    EntityManager em;
 
     List<Updateable> items = new ArrayList<>();
 
@@ -40,7 +41,7 @@ public class GildedRose {
     public void updateItems(){
         for (Updateable updateable : getItems()){
             updateable.updateItem();
-            itemRepository.persistAndFlush(updateable.getItem());
+            em.merge(updateable.getItem());
         }
     }
 
@@ -54,4 +55,7 @@ public class GildedRose {
     }
 
 
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
 }

@@ -1,6 +1,7 @@
 package edu.badpals;
 
 import edu.badpals.domain.Item;
+import edu.badpals.repository.ItemRepository;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
@@ -24,6 +25,9 @@ class ResourceTest {
 
     @Inject
     ResourceGildedRose resources;
+
+    @Inject
+    ItemRepository itemRepository;
 
     @Test
     public void test_injeccion() {
@@ -104,5 +108,27 @@ class ResourceTest {
 
     }
 
+    @Test
+    @Transactional
+    public void test_delete_item(){
+        given()
+                .body("{\"name\": \"Snitch Dorada\", \"sellIn\":10,\"quality\":35}")
+                .header("Content-Type", MediaType.APPLICATION_JSON)
+                .when()
+                .post("/crearItem")
+                .then()
+                .statusCode(201);
+
+        TypedQuery<Item> query = em.createQuery("select item from Item item where item.name = 'Snitch Dorada'",Item.class);
+        Item item = query.getSingleResult();
+        Long itemId = item.id;
+
+        given()
+                .pathParam("id",itemId)
+                .when()
+                .delete("deleteItem/{id}")
+                .then()
+                .statusCode(204);
+    }
 
 }

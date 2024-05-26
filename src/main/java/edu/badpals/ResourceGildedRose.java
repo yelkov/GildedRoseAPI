@@ -118,6 +118,15 @@ public class ResourceGildedRose {
                 Response.status(Response.Status.BAD_REQUEST).build();
     }
 
+    @DELETE
+    @Path("deleteItem/{id}")
+    @Transactional
+    public Response deleteItem(@PathParam("id")Long id){
+        return service.borrarItem(id)?
+                Response.status(204).build():
+                Response.status(404).build();
+    }
+
     /*@POST
     @Path("crearItem/normalItem")
     @Consumes(MediaType.APPLICATION_JSON)

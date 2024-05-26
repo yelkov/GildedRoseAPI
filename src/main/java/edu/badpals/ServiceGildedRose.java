@@ -111,6 +111,18 @@ public class ServiceGildedRose {
         return item;
     }
 
+    @Transactional
+    public boolean borrarItem(Long id){
+        Optional<Item> item = itemRepository.findByIdOptional(id);
+        if (item.isPresent()){
+            itemRepository.delete(item.get());
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     /*@Transactional
     public NormalItem crearNormalItem(String name, Integer sellIn, Integer quality){
         NormalItem normalItem = new NormalItem(name,sellIn,quality);

@@ -2,6 +2,8 @@ package edu.badpals;
 
 import edu.badpals.domain.*;
 import jakarta.inject.Inject;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -9,6 +11,8 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Path("/")
 public class ResourceGildedRose {
@@ -101,6 +105,30 @@ public class ResourceGildedRose {
                 Response.status(Response.Status.NOT_FOUND).build():
                 Response.status(Response.Status.OK).entity(sulfuras).build();
     }
+    @POST
+    @Path("crearItem")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    //curl -d "{\"name\": \"Snitch Dorada\", \"sellIn\":10,\"quality\":35}" -H "Content-Type: application/json" -X POST http://localhost:8080/crearItem -v
+    public Response postItem(Item item){
+        Item itemCreado = service.crearItem(item.name,item.sellIn,item.quality);
+        return itemCreado!= null?
+                Response.status(201).entity(itemCreado).build():
+                Response.status(Response.Status.BAD_REQUEST).build();
+    }
 
+    /*@POST
+    @Path("crearItem/normalItem")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    //curl -d "{\"name\": \"Snitch Dorada\", \"sellIn\":10,\"quality\":35}" -H "Content-Type: application/json" -X POST http://localhost:8080/crearItem/normalItem -v
+    public <T> Response postItem(Item item){
+        NormalItem normalItem = service.crearNormalItem(item.name, item.sellIn, item.quality);
+        return normalItem!= null?
+                Response.status(201).entity(normalItem).build():
+                Response.status(Response.Status.BAD_REQUEST).build();
+    }*/
 
 }

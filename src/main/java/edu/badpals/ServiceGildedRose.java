@@ -103,4 +103,46 @@ public class ServiceGildedRose {
         }
         shop.updateItems();
     }
+
+    @Transactional
+    public Item crearItem(String name, Integer sellIn, Integer quality){
+        Item item = new Item(name,sellIn,quality);
+        itemRepository.persist(item);
+        return item;
+    }
+
+    /*@Transactional
+    public NormalItem crearNormalItem(String name, Integer sellIn, Integer quality){
+        NormalItem normalItem = new NormalItem(name,sellIn,quality);
+
+        return normalItem;
+    }*/
+
+    /*@Transactional
+    public <T> T crearItem(String name,Integer sellIn, Integer quality, String tipo){
+        switch (tipo){
+            case "NormalItem":
+                NormalItem normalItem = new NormalItem(name,sellIn,quality);
+                normalItemRepository.persist(normalItem);
+                return (T) normalItem;
+            case "AgedBrie":
+                AgedBrie agedBrie = new AgedBrie(name,sellIn,quality);
+                agedBrieRepository.persist(agedBrie);
+                return (T) agedBrie;
+            case "Sulfuras":
+                Sulfuras sulfuras = new Sulfuras(name,sellIn);
+                sulfurasRepository.persist(sulfuras);
+                return (T) sulfuras;
+            case "Conjured":
+                Conjured conjured = new Conjured(name,sellIn,quality);
+                conjuredRepository.persist(conjured);
+                return (T) conjured;
+            case "BackstagePass":
+                BackstagePass backstagePass = new BackstagePass(name,sellIn,quality);
+                backstagepassRepository.persist(backstagePass);
+                return (T) backstagePass;
+            default:
+                return null;
+        }
+    }*/
 }

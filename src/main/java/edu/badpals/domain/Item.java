@@ -1,20 +1,18 @@
 package edu.badpals.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="items")
 public class Item {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     public Long id;
 
     @Column(name="name_item")
     public String name = "";
 
-    @Column(name="sellin")
+    @Column(name="sellIn")
     public int sellIn = 0;
 
     @Column(name="quality")
